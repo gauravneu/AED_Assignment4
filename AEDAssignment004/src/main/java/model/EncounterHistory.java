@@ -13,4 +13,18 @@ import java.util.Date;
  */
 public class EncounterHistory {
     private ArrayList<VitalSigns> vitalSignshistory;
+
+    public EncounterHistory(ArrayList<VitalSigns> vitalSignshistory) {
+        this.vitalSignshistory = vitalSignshistory;
+    }
+
+    public ArrayList<VitalSigns> getVitalSignshistory() {
+        return vitalSignshistory;
+    }
+
+    public void setVitalSignshistory(ArrayList<VitalSigns> vitalSignshistory) {
+        this.vitalSignshistory = vitalSignshistory;
+    }
+    
+    
 }

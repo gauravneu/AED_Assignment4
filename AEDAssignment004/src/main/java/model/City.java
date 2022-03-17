@@ -13,13 +13,11 @@ import java.util.ArrayList;
 public class City {
     private String name;
     private String state;
-    private int pin;
     private ArrayList<Community> communities;
 
     public City(String name, String state, int pin, ArrayList<Community> communities) {
         this.name = name;
         this.state = state;
-        this.pin = pin;
         this.communities = communities;
     }
 
@@ -37,14 +35,6 @@ public class City {
 
     public void setState(String state) {
         this.state = state;
-    }
-
-    public int getPin() {
-        return pin;
-    }
-
-    public void setPin(int pin) {
-        this.pin = pin;
     }
 
     public ArrayList<Community> getCommunities() {
