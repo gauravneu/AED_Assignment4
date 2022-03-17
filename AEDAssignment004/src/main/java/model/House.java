@@ -11,6 +11,7 @@ package model;
 public class House {
     private int appartmentNo;
     private String street;
+    private Community community;
 
     public House(int appartmentNo, String street) {
         this.appartmentNo = appartmentNo;
@@ -32,6 +33,12 @@ public class House {
     public void setStreet(String street) {
         this.street = street;
     }
-    
-    
+
+    public Community getCommunity() {
+        return community;
+    }
+
+    public void setCommunity(Community community) {
+        this.community = community;
+    }
 }

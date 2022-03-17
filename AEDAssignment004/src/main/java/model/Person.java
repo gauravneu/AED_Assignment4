@@ -14,13 +14,13 @@ public class Person {
     private int id;
     private int age;
     private String name;
-    private City city;
+    private House house;
     
-
+    
     public Person(int id, String name, City city) {
         this.id = id;
         this.name = name;
-        this.city = city;
+
         this.age = age;
     }
 
@@ -39,14 +39,6 @@ public class Person {
     public void setName(String name) {
         this.name = name;
     }
-
-    public City getCity() {
-        return city;
-    }
-
-    public void setCity(City city) {
-        this.city = city;
-    } 
 
     public int getAge() {
         return age;
