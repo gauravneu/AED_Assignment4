@@ -4,10 +4,28 @@
  */
 package model;
 
+
 /**
  *
  * @author gaurav
  */
-public class Patient {
+public class Patient extends Person{
+    private EncounterHistory encounterHistory;
+
+    public Patient(EncounterHistory encounterHistory, int id, String name, City city) {
+        super(id, name, city);
+        this.encounterHistory = encounterHistory;
+    }
+
+    public EncounterHistory getEncounterHistory() {
+        return encounterHistory;
+    }
+
+    public void setEncounterHistory(EncounterHistory encounterHistory) {
+        this.encounterHistory = encounterHistory;
+    }
+    
+    
+    
     
 }

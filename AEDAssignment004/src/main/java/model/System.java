@@ -9,5 +9,5 @@ package model;
  * @author gaurav
  */
 public class System {
-    
+   private String name; 
 }

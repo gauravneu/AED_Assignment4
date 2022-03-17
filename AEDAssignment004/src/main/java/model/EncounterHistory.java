@@ -4,10 +4,13 @@
  */
 package model;
 
+import java.util.ArrayList;
+import java.util.Date;
+
 /**
  *
  * @author gaurav
  */
 public class EncounterHistory {
-    
+    private ArrayList<VitalSigns> vitalSignshistory;
 }
