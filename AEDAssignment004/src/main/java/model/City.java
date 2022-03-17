@@ -11,24 +11,24 @@ import java.util.ArrayList;
  * @author gaurav
  */
 public class City {
-    private String city;
+    private String name;
     private String state;
     private int pin;
     private ArrayList<Community> communities;
 
-    public City(String city, String state, int pin, ArrayList<Community> communities) {
-        this.city = city;
+    public City(String name, String state, int pin, ArrayList<Community> communities) {
+        this.name = name;
         this.state = state;
         this.pin = pin;
         this.communities = communities;
     }
 
-    public String getCity() {
-        return city;
+    public String getName() {
+        return name;
     }
 
-    public void setCity(String city) {
-        this.city = city;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getState() {
