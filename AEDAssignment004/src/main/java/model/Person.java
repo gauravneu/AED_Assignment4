@@ -15,23 +15,17 @@ import java.util.Date;
 public class Person {
     private int id;
     private int age;
-    private Date dob;
     private char gender;
     private String name;
     private House house;
-    private String maritalStatus;
-    private String SSN;
     private Long phoneNumber;
 
-    public Person(int id, int age, Date dob, char gender, String name, House house, String maritalStatus, String SSN, Long phoneNumber) {
+    public Person(int id, int age, char gender, String name, House house,Long phoneNumber) {
         this.id = id;
         this.age = age;
-        this.dob = dob;
         this.gender = gender;
         this.name = name;
         this.house = house;
-        this.maritalStatus = maritalStatus;
-        this.SSN = SSN;
         this.phoneNumber = phoneNumber;
     }
        
@@ -61,14 +55,6 @@ public class Person {
         this.age = age;
     }
 
-    public Date getDob() {
-        return dob;
-    }
-
-    public void setDob(Date dob) {
-        this.dob = dob;
-    }
-
     public char getGender() {
         return gender;
     }
@@ -83,22 +69,6 @@ public class Person {
 
     public void setHouse(House house) {
         this.house = house;
-    }
-
-    public String getMaritalStatus() {
-        return maritalStatus;
-    }
-
-    public void setMaritalStatus(String maritalStatus) {
-        this.maritalStatus = maritalStatus;
-    }
-
-    public String getSSN() {
-        return SSN;
-    }
-
-    public void setSSN(String SSN) {
-        this.SSN = SSN;
     }
 
     public Long getPhoneNumber() {

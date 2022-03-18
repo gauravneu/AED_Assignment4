@@ -12,15 +12,15 @@ import java.util.ArrayList;
  */
 public class Community {
     private String communityName;
-    private double area;
-    private long community;
+    private long pinCode;
     private ArrayList<House> house;
+    private City city;
 
-    public Community(String communityName, double area, long community, ArrayList<House> house) {
+    public Community(String communityName, long pinCode, ArrayList<House> house) {
         this.communityName = communityName;
-        this.area = area;
-        this.community = community;
+        this.pinCode = pinCode;
         this.house = house;
+        this.city = city;
     }
 
     public String getCommunityName() {
@@ -31,21 +31,14 @@ public class Community {
         this.communityName = communityName;
     }
 
-    public double getArea() {
-        return area;
+    public long getPinCode() {
+        return pinCode;
     }
 
-    public void setArea(double area) {
-        this.area = area;
+    public void setPinCode(long pinCode) {
+        this.pinCode = pinCode;
     }
 
-    public long getCommunity() {
-        return community;
-    }
-
-    public void setCommunity(long community) {
-        this.community = community;
-    }
 
     public ArrayList<House> getHouse() {
         return house;
@@ -53,6 +46,14 @@ public class Community {
 
     public void setHouse(ArrayList<House> house) {
         this.house = house;
+    }
+
+    public City getCity() {
+        return city;
+    }
+
+    public void setCity(City city) {
+        this.city = city;
     }
     
     

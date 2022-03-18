@@ -18,7 +18,7 @@ public class Patient extends Person{
     public Patient(String chiefComplaint, EncounterHistory encounterHistory, 
             int id, int age, Date dob, char gender, String name, House house, 
             String maritalStatus, String SSN, Long phoneNumber) {
-        super(id, age, dob, gender, name, house, maritalStatus, SSN, phoneNumber);
+        super(id, age, gender, name, house, phoneNumber);
         
         this.chiefComplaint = chiefComplaint;
         this.encounterHistory = encounterHistory;
