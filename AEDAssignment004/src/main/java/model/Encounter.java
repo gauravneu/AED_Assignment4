@@ -14,12 +14,6 @@ public class Encounter {
     
     private VitalSigns vitalSigns;
     private Date date;
-    private City city;
-
-    public Encounter(VitalSigns vitalSigns, Date date) {
-        this.vitalSigns = vitalSigns;
-        this.date = date;
-    }
 
     public VitalSigns getVitalSigns() {
         return vitalSigns;

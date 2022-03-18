@@ -11,32 +11,23 @@ import java.util.ArrayList;
  * @author gaurav
  */
 public class System {
-   private String name; 
-   private ArrayList<City> cities;
+
+   private CityDirectory cityDirectory;
    private PersonDirectory personDirectory;
    private PatientDirectory patientDirectory;
 
-    public System(String name, ArrayList<City> cities, PersonDirectory personDirectory, PatientDirectory patientDirectory) {
-        this.name = name;
-        this.cities = cities;
-        this.personDirectory = personDirectory;
-        this.patientDirectory = patientDirectory;
+    public System() {
+        cityDirectory = new CityDirectory();
+        personDirectory = new PersonDirectory();
+        patientDirectory = new PatientDirectory();
     }
 
-    public String getName() {
-        return name;
+    public CityDirectory getCityDirectory() {
+        return cityDirectory;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public ArrayList<City> getCities() {
-        return cities;
-    }
-
-    public void setCities(ArrayList<City> cities) {
-        this.cities = cities;
+    public void setCityDirectory(CityDirectory cityDirectory) {
+        this.cityDirectory = cityDirectory;
     }
 
     public PersonDirectory getPersonDirectory() {
@@ -54,7 +45,4 @@ public class System {
     public void setPatientDirectory(PatientDirectory patientDirectory) {
         this.patientDirectory = patientDirectory;
     }
-   
-   
-   
 }

@@ -6,25 +6,39 @@ package model;
 
 import java.util.ArrayList;
 import java.util.Date;
+import model.VitalSigns;
+import model.Encounter;
 
 /**
  *
  * @author gaurav
  */
 public class EncounterHistory {
-    private ArrayList<VitalSigns> vitalSignshistory;
+    private ArrayList<Encounter> encounterHistory;
 
-    public EncounterHistory(ArrayList<VitalSigns> vitalSignshistory) {
-        this.vitalSignshistory = vitalSignshistory;
+    public EncounterHistory() {
+        encounterHistory = new ArrayList<>();
     }
 
-    public ArrayList<VitalSigns> getVitalSignshistory() {
-        return vitalSignshistory;
+    public ArrayList<Encounter> getEncounterHistory() {
+        return encounterHistory;
     }
 
-    public void setVitalSignshistory(ArrayList<VitalSigns> vitalSignshistory) {
-        this.vitalSignshistory = vitalSignshistory;
+    public void setEncounterHistory(ArrayList<Encounter> encounterHistory) {
+        this.encounterHistory = encounterHistory;
     }
+
+
     
-    
+     public Encounter addNewEncounter(){
+         
+         Encounter newEncounter = new Encounter();
+         encounterHistory.add(newEncounter);
+         return newEncounter;
+     }
+     
+     public void removeEncounter(Encounter e){
+         encounterHistory.remove(e);
+     }
+
 }

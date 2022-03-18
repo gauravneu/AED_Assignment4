@@ -13,6 +13,10 @@ public class VitalSigns {
     private double pulseRate;
     private double respirationRate;
     private double bloodPressure;
+    private double height;
+    private double glucoseLevel;
+    private double weight;
+    private double heightInFeet;
 
     public VitalSigns() {
     }
@@ -47,6 +51,38 @@ public class VitalSigns {
 
     public void setBloodPressure(double bloodPressure) {
         this.bloodPressure = bloodPressure;
+    }
+
+    public double getHeight() {
+        return height;
+    }
+
+    public void setHeight(double height) {
+        this.height = height;
+    }
+
+    public double getGlucoseLevel() {
+        return glucoseLevel;
+    }
+
+    public void setGlucoseLevel(double glucoseLevel) {
+        this.glucoseLevel = glucoseLevel;
+    }
+
+    public double getWeight() {
+        return weight;
+    }
+
+    public void setWeight(double weight) {
+        this.weight = weight;
+    }
+
+    public double getHeightInFeet() {
+        return heightInFeet;
+    }
+
+    public void setHeightInFeet(double heightInFeet) {
+        this.heightInFeet = heightInFeet;
     }
     
     

@@ -11,19 +11,30 @@ import java.util.ArrayList;
  * @author gaurav
  */
 public class PatientDirectory {
-    private ArrayList<Doctor> doctorList;
+    private ArrayList<Patient> patientList;
 
-    public PatientDirectory(ArrayList<Doctor> doctorList) {
-        this.doctorList = doctorList;
+    public PatientDirectory() {
+        patientList = new ArrayList<>();
     }
 
-    public ArrayList<Doctor> getDoctorList() {
-        return doctorList;
+    public ArrayList<Patient> getPatientList() {
+        return patientList;
     }
 
-    public void setDoctorList(ArrayList<Doctor> doctorList) {
-        this.doctorList = doctorList;
+    public void setPatientList(ArrayList<Patient> patientList) {
+        this.patientList = patientList;
     }
-    
+        
+    public ArrayList<Encounter> getAllEncountersOfPatients(int patientId){
+        
+
+         
+         for(Patient p: patientList){
+         if(p.getId() == patientId){
+             return p.getEncounterHistory().getEncounterHistory();
+         }
+    }
+         return null;
+    }
     
 }
