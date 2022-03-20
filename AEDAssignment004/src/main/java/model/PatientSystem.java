@@ -10,13 +10,13 @@ import java.util.ArrayList;
  *
  * @author gaurav
  */
-public class System {
+public class PatientSystem {
 
    private CityDirectory cityDirectory;
    private PersonDirectory personDirectory;
    private PatientDirectory patientDirectory;
 
-    public System() {
+    public PatientSystem() {
         cityDirectory = new CityDirectory();
         personDirectory = new PersonDirectory();
         patientDirectory = new PatientDirectory();

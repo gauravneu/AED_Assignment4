@@ -13,31 +13,16 @@ import java.util.Date;
  * @author gaurav
  */
 public class Person {
-    private int id;
+
     private int age;
-    private char gender;
+    private String gender;
     private String name;
     private House house;
     private Long phoneNumber;
 
-    public Person(int id, int age, char gender, String name, House house,Long phoneNumber) {
-        this.id = id;
-        this.age = age;
-        this.gender = gender;
-        this.name = name;
-        this.house = house;
-        this.phoneNumber = phoneNumber;
-    }
-       
-
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
+//    public Person() {
+//
+//    }
 
     public String getName() {
         return name;
@@ -55,11 +40,11 @@ public class Person {
         this.age = age;
     }
 
-    public char getGender() {
+    public String getGender() {
         return gender;
     }
 
-    public void setGender(char gender) {
+    public void setGender(String gender) {
         this.gender = gender;
     }
 

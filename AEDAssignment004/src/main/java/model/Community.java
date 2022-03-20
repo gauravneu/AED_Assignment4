@@ -11,18 +11,53 @@ import java.util.ArrayList;
  * @author gaurav
  */
 public class Community {
+    private static int pinId = 10001;
     private String communityName;
-    private long pinCode;
-    private ArrayList<House> house;
+    private int pinCode;
     private City city;
+    private ArrayList<House> houses = new ArrayList<>();
 
-    public Community(String communityName, long pinCode, ArrayList<House> house) {
-        this.communityName = communityName;
-        this.pinCode = pinCode;
-        this.house = house;
-        this.city = city;
+    public Community() {
+        
+        pinCode = pinId;
+        pinId++;
+        
+    }
+    
+
+    public House addHouse(){
+        House h1 = new House();
+        houses.add(h1);
+        return h1;
     }
 
+    public int getPinCode() {
+        return pinCode;
+    }
+    
+    
+    
+    
+    public House getHouse(int aptNo, String street) {
+        for (House h : houses) {
+            if ((h.getStreet().toLowerCase().equals(street)) && (h.getAppartmentNo() == aptNo)) {
+                return h;
+            }
+        }
+        return null;
+    }
+
+    
+
+    public ArrayList<House> getHouses() {
+        return houses;
+    }
+
+    public void setHouses(ArrayList<House> houses) {
+        this.houses = houses;
+    }
+    
+    
     public String getCommunityName() {
         return communityName;
     }
@@ -31,21 +66,12 @@ public class Community {
         this.communityName = communityName;
     }
 
-    public long getPinCode() {
-        return pinCode;
-    }
-
-    public void setPinCode(long pinCode) {
-        this.pinCode = pinCode;
-    }
-
-
     public ArrayList<House> getHouse() {
-        return house;
+        return houses;
     }
 
-    public void setHouse(ArrayList<House> house) {
-        this.house = house;
+    public void setHouse(ArrayList<House> houses) {
+        this.houses = houses;
     }
 
     public City getCity() {

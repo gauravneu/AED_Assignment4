@@ -11,31 +11,17 @@ import java.util.ArrayList;
  * @author gaurav
  */
 public class City {
-    private String name;
-    private String state;
-    private ArrayList<Community> communities;
-
-    public City(String name, String state, int pin, ArrayList<Community> communities) {
-        this.name = name;
-        this.state = state;
-        this.communities = communities;
+    private String cityName;
+    private ArrayList<Community> communities = new ArrayList<>();
+    
+    public String getcityName() {
+        return cityName;
     }
 
-    public String getName() {
-        return name;
+    public void setcityName(String name) {
+        this.cityName = name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getState() {
-        return state;
-    }
-
-    public void setState(String state) {
-        this.state = state;
-    }
 
     public ArrayList<Community> getCommunities() {
         return communities;
@@ -44,4 +30,23 @@ public class City {
     public void setCommunities(ArrayList<Community> communities) {
         this.communities = communities;
     }
+    
+    public Community addCommunity(){
+        Community c = new Community();
+        communities.add(c);
+        return c;
+    }
+    
+    public Community getCommunity(String communityName){
+        for (Community c: communities){
+            if(c.getCommunityName().toLowerCase().equals(communityName)){return c;}
+        }
+        return null;
+    }  
+    
+    public boolean emptyCityDir(){
+      return  communities.isEmpty();
+    }
+    
+
 }

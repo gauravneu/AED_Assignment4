@@ -16,7 +16,6 @@ public class VitalSigns {
     private double height;
     private double glucoseLevel;
     private double weight;
-    private double heightInFeet;
 
     public VitalSigns() {
     }
@@ -77,13 +76,7 @@ public class VitalSigns {
         this.weight = weight;
     }
 
-    public double getHeightInFeet() {
-        return heightInFeet;
-    }
 
-    public void setHeightInFeet(double heightInFeet) {
-        this.heightInFeet = heightInFeet;
-    }
     
     
 }

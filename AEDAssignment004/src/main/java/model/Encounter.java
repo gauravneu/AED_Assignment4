@@ -31,5 +31,10 @@ public class Encounter {
         this.date = date;
     }
     
+    @Override
+    public String toString(){
+        return String.valueOf(vitalSigns.getBloodPressure());
+    }
+    
     
 }

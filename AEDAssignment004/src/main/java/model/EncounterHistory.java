@@ -41,4 +41,5 @@ public class EncounterHistory {
          encounterHistory.remove(e);
      }
 
+ 
 }

@@ -4,11 +4,32 @@
  */
 package Patients;
 
-import java.util.Date;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.text.ParseException;
+import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import model.City;
+import model.CityDirectory;
+import model.Community;
+import model.Encounter;
 import model.EncounterHistory;
+
 import model.House;
+import model.Patient;
 import model.PatientDirectory;
+import model.Person;
+import model.PersonDirectory;
+import model.VitalSigns;
 
 /**
  *
@@ -21,12 +42,27 @@ public class CreatePatientJPanel extends javax.swing.JPanel {
      */
     JPanel userProcessContainer;
     PatientDirectory pd;
-    
-    public CreatePatientJPanel(JPanel userProcessContainer , PatientDirectory pd) {
-        initComponents();
-        
-        this.userProcessContainer = userProcessContainer;
+    Patient patient;
+    PersonDirectory ps;
+    Person person;
+    Community community;
+    House house;
+    CityDirectory cityDir;
+    private final JFileChooser choosePic;
+    private BufferedImage image;
+    EncounterHistory encounterHistory;
+    Encounter encounter;
+    VitalSigns vitalSigns;
+
+    public CreatePatientJPanel(JPanel userProcessContainer, PatientDirectory pd, CityDirectory cityDir) {
+
+        choosePic = new JFileChooser();
+        choosePic.setFileFilter(new FileNameExtensionFilter("jpeg Files", "jpeg"));
         this.pd = pd;
+        this.cityDir = cityDir;
+        initComponents();
+        this.userProcessContainer = userProcessContainer;
+
     }
 
     /**
@@ -38,95 +74,544 @@ public class CreatePatientJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
+        txtName = new javax.swing.JTextField();
+        txtAge = new javax.swing.JTextField();
+        txtGender = new javax.swing.JTextField();
+        txtPhone = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        btnAdd = new javax.swing.JButton();
+        btnSearch = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        txtMessage = new javax.swing.JLabel();
+        btnLoad = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        lblCity = new javax.swing.JLabel();
+        txtStreet = new javax.swing.JTextField();
+        txtCity = new javax.swing.JTextField();
+        lblCommunity = new javax.swing.JLabel();
+        lblPinCode = new javax.swing.JLabel();
+        txtCommunity = new javax.swing.JTextField();
+        txtApartmentNo = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
 
-        jButton1.setText("jButton1");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        txtAge.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                txtAgeActionPerformed(evt);
             }
         });
 
-        jTextField1.setText("Name :");
+        jLabel1.setText("Name :");
 
-        jTextField2.setText("Age :");
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        jLabel2.setText("Age :");
+
+        jLabel3.setText("Phone :");
+
+        btnAdd.setText("Add Patient");
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                btnAddActionPerformed(evt);
             }
         });
 
-        jTextField3.setText("Gender :");
+        btnSearch.setText("Search image");
+        btnSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchActionPerformed(evt);
+            }
+        });
 
-        jTextField4.setText("Tel No :");
+        jLabel4.setText("Photo :");
 
-        jTextField5.setText("jTextField5");
+        btnLoad.setText("Load Patients");
+        btnLoad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLoadActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(201, 201, 201)
+                        .addComponent(btnAdd)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnLoad))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap(236, Short.MAX_VALUE)
+                        .addComponent(jLabel4)
+                        .addGap(197, 197, 197)
+                        .addComponent(btnSearch)))
+                .addGap(225, 225, 225))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(btnSearch, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(txtMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAdd)
+                    .addComponent(btnLoad))
+                .addGap(45, 45, 45))
+        );
+
+        jLabel7.setText("Gender :");
+
+        jLabel9.setText("Street :");
+
+        lblCity.setText("City :");
+
+        lblCommunity.setText("Community :");
+
+        lblPinCode.setText("Apartment No :");
+
+        jLabel5.setText("Create New Patients");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(350, 350, 350)
-                        .addComponent(jButton1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(193, 193, 193)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(383, Short.MAX_VALUE))
+                .addGap(193, 193, 193)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblPinCode)
+                    .addComponent(lblCommunity)
+                    .addComponent(lblCity)
+                    .addComponent(jLabel9)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel7))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txtAge, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE)
+                    .addComponent(txtName)
+                    .addComponent(txtGender)
+                    .addComponent(txtPhone, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(txtStreet, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(txtCity, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(txtCommunity)
+                    .addComponent(txtApartmentNo))
+                .addGap(263, 263, 263))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 21, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(331, 331, 331)
+                .addComponent(jLabel5)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(148, 148, 148)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 181, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(90, 90, 90))
+                .addGap(31, 31, 31)
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addGap(0, 0, 0)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtAge, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addGap(0, 0, 0)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(txtGender, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, 0)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtPhone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(txtStreet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, 0)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblCity)
+                    .addComponent(txtCity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, 0)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblCommunity)
+                    .addComponent(txtCommunity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, 0)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblPinCode)
+                    .addComponent(txtApartmentNo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(10, 10, 10)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         // TODO add your handling code here:
-        
-        
-        int age
-        char gender
-        String name
-        House house 
-        Long phoneNumber
-    }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+        try {
+            
+            int age = 0;
+            String gender = txtGender.getText();
+            String name = txtName.getText();
+            long phoneNumber = 0;
+            String street = txtStreet.getText();
+            String communityName = txtCommunity.getText();
+            String cityName = txtCity.getText();
+            int aptNo = 0;
+
+            try {
+                age = Integer.parseInt(txtAge.getText());
+                phoneNumber = Long.parseLong(txtPhone.getText());
+                aptNo = Integer.parseInt(txtApartmentNo.getText());
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(this, "Please provide correct values "
+                        + "for Age, Phone Number,Apartment no and PinCode");
+            }
+
+            if (image == null) {
+                JOptionPane.showMessageDialog(this, "Choose Image");
+                return;
+            }
+
+            if (age < 1 || age > 120) {
+                JOptionPane.showMessageDialog(this, "Age should be greater than 0 an less than 121.");
+                return;
+            }
+
+            if (!(gender.equals("Female") || gender.equals("Male"))) {
+                JOptionPane.showMessageDialog(this, "Gender should be 'Male' or 'Female'");
+                return;
+            }
+
+            if (phoneNumber > 10000000001l || phoneNumber < 1000000000) {
+                JOptionPane.showMessageDialog(this, "Phone Number should be of 10 digits.");
+                return;
+            }
+
+            if (cityDir.emptyCityDir() || (!(cityDir.isExistingCity(cityName)))) {
+
+                //               System.out.println("Empty Directory or Non-Existing City");
+                
+                
+                patient = pd.addPatient();
+            person = new Person();
+            house = new House();
+            Community newCommunity;
+                City newCity = cityDir.addCity();
+                newCity.setcityName(cityName);
+                newCommunity = newCity.addCommunity();
+                newCommunity.setCommunityName(communityName);
+                house = newCommunity.addHouse();
+                house.setAppartmentNo(aptNo);
+                house.setStreet(street);
+                house.setCityName(cityName);
+                house.setCommunity(newCommunity);
+                house.setCity(newCity);
+            } else if (!(cityDir.isExistingCommunityInGivenCity(communityName, cityName))) {
+                //              System.out.println("Existing City but new Community");
+
+                City c = cityDir.getCity(cityName);
+                Community c1 = c.addCommunity();
+                c1.setCommunityName(communityName);
+                c1.setCity(c);
+                house = c1.addHouse();
+                house.setAppartmentNo(aptNo);
+                house.setStreet(street);
+                house.setCityName(cityName);
+                house.setCommunity(c1);
+                house.setCity(c);
+            } else if (cityDir.isExistingHouseInExistingCommunityInGivenCity(communityName, cityName, aptNo, street)) {
+
+                //               System.out.println("Existing house in given community and city");
+                City c = cityDir.getCity(cityName);
+                //           System.out.println(c.getcityName() + "Create Pateint all existing");
+                Community c1 = c.getCommunity(communityName);
+                //         System.out.println(c1.getCommunityName() + "Create Pateint all existing");
+                house = c1.getHouse(aptNo, street);
+                //       System.out.println("Inside second else if :" + house.getCityName());
+            } else if ((cityDir.isExistingCommunityInGivenCity(communityName, cityName))
+                    && (!(cityDir.isExistingHouseInExistingCommunityInGivenCity(communityName, cityName, aptNo, street)))) {
+                System.out.println("Existing Community in given City but new House");
+
+                City c = cityDir.getCity(cityName);
+                Community c1 = c.getCommunity(communityName);
+                house = c1.addHouse();
+                house.setAppartmentNo(aptNo);
+                house.setCityName(cityName);
+                house.setCommunity(c1);
+                house.setStreet(street);
+                house.setCity(c);
+            }
+
+            patient.setPhoto(image);
+            person.setAge(age);
+            person.setGender(gender);
+            person.setName(name);
+            person.setPhoneNumber(phoneNumber);
+            person.setHouse(house);
+            patient.setPerson(person);
+            JOptionPane.showMessageDialog(this, "Patient Added");
+
+            txtAge.setText("");
+            txtCity.setText("");
+            txtCommunity.setText("");
+            txtGender.setText("");
+            txtName.setText("");
+            txtPhone.setText("");
+            txtApartmentNo.setText("");
+            txtStreet.setText("");
+
+        } catch (Exception ex) {
+            Logger.getLogger(ViewPatientJPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+
+    }//GEN-LAST:event_btnAddActionPerformed
+
+    private void txtAgeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAgeActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_txtAgeActionPerformed
+
+    private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
+        // TODO add your handling code here:
+        int openValue = choosePic.showOpenDialog(this);
+
+        if (openValue == JFileChooser.APPROVE_OPTION) {
+            try {
+                image = ImageIO.read(choosePic.getSelectedFile());
+                txtMessage.setText("Image Chosen");
+            } catch (IOException ioe) {
+                txtMessage.setText("Error Getting Image");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Choose Photo!", "Info", JOptionPane.INFORMATION_MESSAGE);
+        }
+
+    }//GEN-LAST:event_btnSearchActionPerformed
+
+    private void btnLoadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoadActionPerformed
+        // TODO add your handling code here:
+        
+        
+        System.out.println("Start");
+        
+        
+        FileReader reader = null;
+        System.out.println("Reader Line done");
+        try {
+            System.out.println("Try block of reader");
+            reader = new FileReader("./config.properties");
+            System.out.println("file read");
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(CreatePatientJPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        System.out.println("After file");
+        Properties patientProp = new Properties();
+        try {
+            patientProp.load(reader);
+        } catch (IOException ex) {
+            Logger.getLogger(CreatePatientJPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        System.out.println("Before image");
+        BufferedImage image1 = null;
+        try {
+            image1 = ImageIO.read(new File("./Patient.jpeg"));
+            System.out.println("Image Set");
+        } catch (IOException ex) {
+            Logger.getLogger(CreatePatientJPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        int i;
+        for (i = 1; i < 10; i++) {
+            System.out.println("For Loop");
+ //           for (Patient patient1 : pd.getPatientList()) {
+                System.out.println("Internal For Loop");
+                patient = pd.addPatient();
+                person = new Person();
+                house = new House();
+                Community newCommunity;
+                encounterHistory = new EncounterHistory();
+                int age = 0;
+                String gender = patientProp.getProperty("gender" + String.valueOf(i));
+                String name = patientProp.getProperty("name" + String.valueOf(i));
+                long phoneNumber = 0;
+                String street = patientProp.getProperty("street" + String.valueOf(i));
+                String communityName = patientProp.getProperty("communityName" + String.valueOf(i));
+                String cityName = patientProp.getProperty("cityName" + String.valueOf(i));
+                int aptNo = 0;
+                String chiefComplaint = patientProp.getProperty("chiefComplaint" + String.valueOf(i));
+                
+                
+                
+                
+                double bodyTemperature = 0;
+                double pulseRate = 0;
+                double respirationRate = 0;
+                double bloodPressure = 0;
+                double height = 0;
+                double glucoseLevel = 0;
+                double weight = 0;
+
+                try {
+                    age = Integer.parseInt(patientProp.getProperty("age" + String.valueOf(i)));
+                    phoneNumber = Long.parseLong(patientProp.getProperty("phoneNumber" + String.valueOf(i)));
+                    aptNo = Integer.parseInt(patientProp.getProperty("aptNo" + String.valueOf(i)));
+                    bodyTemperature = Double.parseDouble(patientProp.getProperty("bodyTemperature" + String.valueOf(i)));
+                    pulseRate = Double.parseDouble(patientProp.getProperty("pulseRate" + String.valueOf(i)));
+                    respirationRate = Double.parseDouble(patientProp.getProperty("respirationRate" + String.valueOf(i)));
+                    bloodPressure = Double.parseDouble(patientProp.getProperty("bloodPressure" + String.valueOf(i)));
+                    height = Double.parseDouble(patientProp.getProperty("height" + String.valueOf(i)));
+                    glucoseLevel = Double.parseDouble(patientProp.getProperty("glucoseLevel" + String.valueOf(i)));
+                    weight = Double.parseDouble(patientProp.getProperty("weight" + String.valueOf(i)));
+
+                } catch (NumberFormatException e) {
+                    JOptionPane.showMessageDialog(this, "Please provide correct values "
+                            + "for Age, Phone Number, Apt No, Body Temperature, Pulse Rate, Respiration Rate, Blood Pressure, Height, Glucose Level, Weight in config file for Patient :" + i);
+                }
+
+                if (image1 == null) {
+                    JOptionPane.showMessageDialog(this, "Choose Image");
+                    return;
+                }
+
+                if (age < 1 || age > 120) {
+                    JOptionPane.showMessageDialog(this, "Age should be greater than 0 an less than 121.");
+                    return;
+                }
+
+                if (!(gender.equals("Female") || gender.equals("Male"))) {
+                    JOptionPane.showMessageDialog(this, "Gender should be 'Male' or 'Female'");
+                    return;
+                }
+
+                if (phoneNumber > 10000000001l || phoneNumber < 1000000000) {
+                    JOptionPane.showMessageDialog(this, "Phone Number should be of 10 digits.");
+                    return;
+                }
+
+                if (cityDir.emptyCityDir() || (!(cityDir.isExistingCity(cityName)))) {
+                    City newCity = cityDir.addCity();
+                    newCity.setcityName(cityName);
+                    newCommunity = newCity.addCommunity();
+                    newCommunity.setCommunityName(communityName);
+                    house = newCommunity.addHouse();
+                    house.setAppartmentNo(aptNo);
+                    house.setStreet(street);
+                    house.setCityName(cityName);
+                    house.setCommunity(newCommunity);
+                    house.setCity(newCity);
+                } else if (!(cityDir.isExistingCommunityInGivenCity(communityName, cityName))) {
+                    City c = cityDir.getCity(cityName);
+                    Community c1 = c.addCommunity();
+                    c1.setCommunityName(communityName);
+                    c1.setCity(c);
+                    house = c1.addHouse();
+                    house.setAppartmentNo(aptNo);
+                    house.setStreet(street);
+                    house.setCityName(cityName);
+                    house.setCommunity(c1);
+                    house.setCity(c);
+                } else if (cityDir.isExistingHouseInExistingCommunityInGivenCity(communityName, cityName, aptNo, street)) {
+                    City c = cityDir.getCity(cityName);
+                    Community c1 = c.getCommunity(communityName);
+                    house = c1.getHouse(aptNo, street);
+                } else if ((cityDir.isExistingCommunityInGivenCity(communityName, cityName))
+                        && (!(cityDir.isExistingHouseInExistingCommunityInGivenCity(communityName, cityName, aptNo, street)))) {
+                    System.out.println("Existing Community in given City but new House");
+                    City c = cityDir.getCity(cityName);
+                    Community c1 = c.getCommunity(communityName);
+                    house = c1.addHouse();
+                    house.setAppartmentNo(aptNo);
+                    house.setCityName(cityName);
+                    house.setCommunity(c1);
+                    house.setStreet(street);
+                    house.setCity(c);
+                }
+                
+                
+                System.out.println( "Patient No :" +patient.getPatientNo());
+                System.out.println("Vital Signs Line Starts");
+                vitalSigns = new VitalSigns();
+                
+                if (bodyTemperature != 0) {
+                    vitalSigns.setBodyTemperature(bodyTemperature);
+                }
+
+                if (pulseRate != 0) {
+                    vitalSigns.setPulseRate(pulseRate);
+                }
+
+                if (respirationRate != 0) {
+                    vitalSigns.setRespirationRate(respirationRate);
+                }
+                if (bloodPressure != 0) {
+                    vitalSigns.setBloodPressure(bloodPressure);
+                }
+
+                if (height != 0) {
+                    vitalSigns.setHeight(height);
+                }
+
+                if (glucoseLevel != 0) {
+                    vitalSigns.setGlucoseLevel(glucoseLevel);
+                }
+                if (weight != 0) {
+                    vitalSigns.setWeight(weight);
+                }
+
+                encounter = encounterHistory.addNewEncounter();
+                encounter.setVitalSigns(vitalSigns);
+                patient.setEncounterHistory(encounterHistory);
+                patient.setPhoto(image);
+                person.setAge(age);
+                person.setGender(gender);
+                person.setName(name);
+                person.setPhoneNumber(phoneNumber);
+                person.setHouse(house);
+                patient.setPerson(person);
+                patient.setChiefComplaint(chiefComplaint);
+
+                patient.setPhoto(image1);
+ //           }
+        }
+            JOptionPane.showMessageDialog(null, "Patient Loaded!", "Info", JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_btnLoadActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
+    private javax.swing.JButton btnAdd;
+    private javax.swing.JButton btnLoad;
+    private javax.swing.JButton btnSearch;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lblCity;
+    private javax.swing.JLabel lblCommunity;
+    private javax.swing.JLabel lblPinCode;
+    private javax.swing.JTextField txtAge;
+    private javax.swing.JTextField txtApartmentNo;
+    private javax.swing.JTextField txtCity;
+    private javax.swing.JTextField txtCommunity;
+    private javax.swing.JTextField txtGender;
+    private javax.swing.JLabel txtMessage;
+    private javax.swing.JTextField txtName;
+    private javax.swing.JTextField txtPhone;
+    private javax.swing.JTextField txtStreet;
     // End of variables declaration//GEN-END:variables
 }

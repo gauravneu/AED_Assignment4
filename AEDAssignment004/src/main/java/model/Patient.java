@@ -4,24 +4,35 @@
  */
 package model;
 
+import java.awt.image.BufferedImage;
 import java.util.Date;
-
+import model.Person;
 
 /**
  *
  * @author gaurav
  */
-public class Patient extends Person{
+public class Patient{
+    private static int id = 100;
+    private int patientNo;
     private String chiefComplaint;
+    private BufferedImage photo;
     private EncounterHistory encounterHistory;
+    private Person person;    
 
-    public Patient(String chiefComplaint, EncounterHistory encounterHistory, 
-            int id, int age, Date dob, char gender, String name, House house, 
-            String maritalStatus, String SSN, Long phoneNumber) {
-        super(id, age, gender, name, house, phoneNumber);
+    public Patient() {
+        encounterHistory = new EncounterHistory();
+    id++;
+    patientNo = id;
         
-        this.chiefComplaint = chiefComplaint;
-        this.encounterHistory = encounterHistory;
+    }
+
+    public Person getPerson() {
+        return person;
+    }
+
+    public void setPerson(Person person) {
+        this.person = person;
     }
 
     public EncounterHistory getEncounterHistory() {
@@ -38,6 +49,29 @@ public class Patient extends Person{
 
     public void setChiefComplaint(String chiefComplaint) {
         this.chiefComplaint = chiefComplaint;
+        
     }
+
+    public int getPatientNo() {
+        return patientNo;
+    }
+
+    public void setPatientNo(int patientNo) {
+        this.patientNo = patientNo;
+    }
+
+    public BufferedImage getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(BufferedImage photo) {
+        this.photo = photo;
+    }
+    
+    @Override
+    public String toString(){
+        return String.valueOf(patientNo);
+    }
+    
     
 }
