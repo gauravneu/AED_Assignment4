@@ -256,7 +256,7 @@ public class CreatePatientJPanel extends javax.swing.JPanel {
                 return;
             }
 
-            if (!(gender.equals("Female") || gender.equals("Male"))) {
+            if (!(gender.toLowerCase().equals("female") || gender.toLowerCase().equals("male"))) {
                 JOptionPane.showMessageDialog(this, "Gender should be 'Male' or 'Female'");
                 return;
             }
@@ -451,7 +451,7 @@ public class CreatePatientJPanel extends javax.swing.JPanel {
                 return;
             }
 
-            if (!(gender.equals("Female") || gender.equals("Male"))) {
+            if (!(gender.toLowerCase().equals("female") || gender.toLowerCase().equals("male"))) {
                 JOptionPane.showMessageDialog(this, "Gender should be 'Male' or 'Female'");
                 return;
             }
