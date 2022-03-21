@@ -4,6 +4,9 @@
  */
 package Patients;
 
+import java.awt.CardLayout;
+import java.awt.Component;
+import java.awt.HeadlessException;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import model.Encounter;
@@ -26,11 +29,13 @@ public class UpdatePatientDetailsJPanel extends javax.swing.JPanel {
     Encounter encounter;
     VitalSigns vitalSigns;
 
-    public UpdatePatientDetailsJPanel(JPanel userProcessContainer, Encounter e) {
+    public UpdatePatientDetailsJPanel(JPanel userProcessContainer, Encounter e, Patient p) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.encounter = e;
         this.vitalSigns = e.getVitalSigns();
+        this.patient = patient;
+        lblPatientName.setText(p.getPerson().getName());
 
     }
 
@@ -59,34 +64,53 @@ public class UpdatePatientDetailsJPanel extends javax.swing.JPanel {
         txtPulseRate = new javax.swing.JTextField();
         txtBodyTemperature = new javax.swing.JTextField();
         btnUpdate = new javax.swing.JButton();
+        btnBack = new javax.swing.JButton();
+        lblPatientName = new javax.swing.JLabel();
 
-        jLabel1.setText("Update Vital Signs");
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel1.setText("Update Vital Signs For");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 30, 160, 54));
 
         lblBodyTemperature.setText("Body Temperature :");
+        add(lblBodyTemperature, new org.netbeans.lib.awtextra.AbsoluteConstraints(143, 119, -1, -1));
 
         lblPulseRate.setText("Pulse Rate :");
+        add(lblPulseRate, new org.netbeans.lib.awtextra.AbsoluteConstraints(192, 171, -1, -1));
 
         lblRespirationRate.setText("Respiration Rate :");
+        add(lblRespirationRate, new org.netbeans.lib.awtextra.AbsoluteConstraints(154, 225, -1, -1));
 
         lblBloodPressure.setText("Blood Pressure :");
+        add(lblBloodPressure, new org.netbeans.lib.awtextra.AbsoluteConstraints(164, 277, -1, -1));
 
         lblHeight.setText("Height :");
+        add(lblHeight, new org.netbeans.lib.awtextra.AbsoluteConstraints(214, 326, -1, -1));
 
         lblGlucoseLevel.setText("Glucose Level :");
+        add(lblGlucoseLevel, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 371, -1, -1));
 
         lblWeight.setText("Weight :");
+        add(lblWeight, new org.netbeans.lib.awtextra.AbsoluteConstraints(213, 418, -1, -1));
 
         txtWeight.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtWeightActionPerformed(evt);
             }
         });
+        add(txtWeight, new org.netbeans.lib.awtextra.AbsoluteConstraints(492, 408, 98, -1));
+        add(txtGlucoseLevel, new org.netbeans.lib.awtextra.AbsoluteConstraints(492, 364, 98, -1));
+        add(txtHeight, new org.netbeans.lib.awtextra.AbsoluteConstraints(492, 320, 98, -1));
+        add(txtBloodPressure, new org.netbeans.lib.awtextra.AbsoluteConstraints(492, 272, 98, -1));
+        add(txtRespirationRate, new org.netbeans.lib.awtextra.AbsoluteConstraints(492, 215, 98, -1));
+        add(txtPulseRate, new org.netbeans.lib.awtextra.AbsoluteConstraints(492, 166, 98, -1));
 
         txtBodyTemperature.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtBodyTemperatureActionPerformed(evt);
             }
         });
+        add(txtBodyTemperature, new org.netbeans.lib.awtextra.AbsoluteConstraints(492, 114, 98, -1));
 
         btnUpdate.setText("Update");
         btnUpdate.addActionListener(new java.awt.event.ActionListener() {
@@ -94,80 +118,16 @@ public class UpdatePatientDetailsJPanel extends javax.swing.JPanel {
                 btnUpdateActionPerformed(evt);
             }
         });
+        add(btnUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(328, 476, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(143, 143, 143)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lblWeight)
-                    .addComponent(lblGlucoseLevel)
-                    .addComponent(lblHeight)
-                    .addComponent(lblBloodPressure)
-                    .addComponent(lblRespirationRate)
-                    .addComponent(lblPulseRate)
-                    .addComponent(lblBodyTemperature))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 228, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtWeight, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE)
-                    .addComponent(txtGlucoseLevel, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(txtHeight, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(txtBloodPressure, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(txtRespirationRate, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(txtPulseRate, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(txtBodyTemperature, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addGap(240, 240, 240))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(328, 328, 328)
-                        .addComponent(btnUpdate))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(314, 314, 314)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(31, 31, 31)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblBodyTemperature)
-                    .addComponent(txtBodyTemperature, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblPulseRate)
-                    .addComponent(txtPulseRate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(23, 23, 23)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lblRespirationRate)
-                    .addComponent(txtRespirationRate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(31, 31, 31)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblBloodPressure)
-                            .addComponent(txtBloodPressure, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(28, 28, 28)
-                        .addComponent(lblHeight)
-                        .addGap(29, 29, 29)
-                        .addComponent(lblGlucoseLevel)
-                        .addGap(31, 31, 31)
-                        .addComponent(lblWeight))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(txtHeight, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtGlucoseLevel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtWeight, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
-                .addComponent(btnUpdate)
-                .addGap(145, 145, 145))
-        );
+        btnBack.setText("<< Back");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
+        add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, -1, -1));
+        add(lblPatientName, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 40, 140, 30));
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtBodyTemperatureActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBodyTemperatureActionPerformed
@@ -202,7 +162,7 @@ public class UpdatePatientDetailsJPanel extends javax.swing.JPanel {
         if (!txtBodyTemperature.getText().isEmpty()) {
             try {
                 bodyTemperature = Double.parseDouble(txtBodyTemperature.getText());
-            } catch (Exception e) {
+            } catch (NumberFormatException e) {
                 JOptionPane.showMessageDialog(this, "Insert Proper values for Body Temperature");
                 return;
             }
@@ -211,7 +171,7 @@ public class UpdatePatientDetailsJPanel extends javax.swing.JPanel {
         if (!txtPulseRate.getText().isEmpty()) {
             try {
                 pulseRate = Double.parseDouble(txtPulseRate.getText());
-            } catch (Exception e) {
+            } catch (NumberFormatException e) {
                 JOptionPane.showMessageDialog(this, "Insert Proper values for Pulse Rate");
                 return;
             }
@@ -220,7 +180,7 @@ public class UpdatePatientDetailsJPanel extends javax.swing.JPanel {
         if (!txtGlucoseLevel.getText().isEmpty()) {
             try {
                 glucoseLevel = Double.parseDouble(txtGlucoseLevel.getText());
-            } catch (Exception e) {
+            } catch (NumberFormatException e) {
                 JOptionPane.showMessageDialog(this, "Insert Proper values for Glucose Level");
                 return;
             }
@@ -229,7 +189,7 @@ public class UpdatePatientDetailsJPanel extends javax.swing.JPanel {
         if (!txtBloodPressure.getText().isEmpty()) {
             try {
                 bloodPressure = Double.parseDouble(txtBloodPressure.getText());
-            } catch (Exception e) {
+            } catch (NumberFormatException e) {
                 JOptionPane.showMessageDialog(this, "Insert Proper values for Blood Pressure");
                 return;
             }
@@ -238,7 +198,7 @@ public class UpdatePatientDetailsJPanel extends javax.swing.JPanel {
         if (!txtHeight.getText().isEmpty()) {
             try {
                 height = Double.parseDouble(txtHeight.getText());
-            } catch (Exception e) {
+            } catch (NumberFormatException e) {
                 JOptionPane.showMessageDialog(this, "Insert Proper values for Height");
                 return;
             }
@@ -247,7 +207,7 @@ public class UpdatePatientDetailsJPanel extends javax.swing.JPanel {
         if (!txtRespirationRate.getText().isEmpty()) {
             try {
                 respirationRate = Double.parseDouble(txtRespirationRate.getText());
-            } catch (Exception e) {
+            } catch (NumberFormatException e) {
                 JOptionPane.showMessageDialog(this, "Insert Proper values for Respiration Rate");
                 return;
             }
@@ -256,7 +216,7 @@ public class UpdatePatientDetailsJPanel extends javax.swing.JPanel {
         if (!txtWeight.getText().isEmpty()) {
             try {
                 weight = Double.parseDouble(txtWeight.getText());
-            } catch (Exception e) {
+            } catch (NumberFormatException e) {
                 JOptionPane.showMessageDialog(this, "Insert Proper values for Weight");
                 return;
             }
@@ -293,21 +253,41 @@ public class UpdatePatientDetailsJPanel extends javax.swing.JPanel {
             encounter.setVitalSigns(vitalSigns);
 
             JOptionPane.showMessageDialog(this, "Vital Signs Details Are Updated!!");
-        } catch (Exception e) {
+        } catch (HeadlessException e) {
             JOptionPane.showMessageDialog(this, "Provide proper details!!");
         }
 
 
     }//GEN-LAST:event_btnUpdateActionPerformed
 
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        // TODO add your handling code here:
+ //       userProcessContainer.remove(this);
+ //       Component[] componentArray = userProcessContainer.getComponents();
+   //     Component component = componentArray[componentArray.length - 1];
+    //    CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+      //  layout.previous(userProcessContainer);
+      
+      
+      userProcessContainer.remove(this);
+        Component[] componentArray = userProcessContainer.getComponents();
+        Component component = componentArray[componentArray.length - 1];
+        ViewPatientDetailsJPanel viewPatientDetailsJPanel = (ViewPatientDetailsJPanel) component;
+        viewPatientDetailsJPanel.refreshTable();
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+    }//GEN-LAST:event_btnBackActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBack;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lblBloodPressure;
     private javax.swing.JLabel lblBodyTemperature;
     private javax.swing.JLabel lblGlucoseLevel;
     private javax.swing.JLabel lblHeight;
+    private javax.swing.JLabel lblPatientName;
     private javax.swing.JLabel lblPulseRate;
     private javax.swing.JLabel lblRespirationRate;
     private javax.swing.JLabel lblWeight;

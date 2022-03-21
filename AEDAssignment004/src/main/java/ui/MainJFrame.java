@@ -9,6 +9,13 @@ import Patients.OverviewPageJPanel;
 import Patients.SearchPatientJPanel;
 import Patients.ViewPatientJPanel;
 import java.awt.CardLayout;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import model.CityDirectory;
 import model.PatientDirectory;
 import model.PersonDirectory;
@@ -34,6 +41,24 @@ public class MainJFrame extends javax.swing.JFrame {
         system = new PatientSystem();
         patientList = system.getPatientDirectory();
         cityList = system.getCityDirectory();
+        
+        
+        BufferedImage image;
+                try {
+                    image = ImageIO.read(new File("./PatientFrontpage.jpeg"));
+                    ImageIcon ic = new ImageIcon(image.getScaledInstance(450, 450, Image.SCALE_DEFAULT));
+                    
+                    lblPhoto.setIcon(ic);
+                   
+                } catch (IOException ex) {
+                    JOptionPane.showMessageDialog(this, "Not a valid image to show!!");
+                }
+        
+        
+        
+        
+        
+        
     }
 
     /**
@@ -52,6 +77,9 @@ public class MainJFrame extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         userProcessContainer = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
+        lblPhoto = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -87,29 +115,28 @@ public class MainJFrame extends javax.swing.JFrame {
         controlPanel.setLayout(controlPanelLayout);
         controlPanelLayout.setHorizontalGroup(
             controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, controlPanelLayout.createSequentialGroup()
-                .addContainerGap(16, Short.MAX_VALUE)
-                .addGroup(controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jButton1)
-                        .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING))
-                    .addGroup(controlPanelLayout.createSequentialGroup()
-                        .addGap(11, 11, 11)
-                        .addGroup(controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton3)
-                            .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(45, 45, 45))
+            .addGroup(controlPanelLayout.createSequentialGroup()
+                .addContainerGap(11, Short.MAX_VALUE)
+                .addGroup(controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jButton2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, controlPanelLayout.createSequentialGroup()
+                        .addGap(3, 3, 3)
+                        .addGroup(controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)
+                            .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 57, Short.MAX_VALUE))
         );
         controlPanelLayout.setVerticalGroup(
             controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(controlPanelLayout.createSequentialGroup()
                 .addGap(185, 185, 185)
                 .addComponent(jButton1)
-                .addGap(41, 41, 41)
+                .addGap(45, 45, 45)
                 .addComponent(jButton2)
-                .addGap(49, 49, 49)
+                .addGap(44, 44, 44)
                 .addComponent(jButton3)
-                .addGap(34, 34, 34)
+                .addGap(35, 35, 35)
                 .addComponent(jButton4)
                 .addContainerGap(221, Short.MAX_VALUE))
         );
@@ -117,6 +144,15 @@ public class MainJFrame extends javax.swing.JFrame {
         jSplitPane1.setLeftComponent(controlPanel);
 
         userProcessContainer.setLayout(new java.awt.CardLayout());
+
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel1.add(lblPhoto, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 60, 490, 520));
+
+        jLabel1.setText("Patient Management Portal");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 50, -1, 40));
+
+        userProcessContainer.add(jPanel1, "card2");
+
         jSplitPane1.setRightComponent(userProcessContainer);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -214,7 +250,10 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JSplitPane jSplitPane1;
+    private javax.swing.JLabel lblPhoto;
     private javax.swing.JPanel userProcessContainer;
     // End of variables declaration//GEN-END:variables
 }

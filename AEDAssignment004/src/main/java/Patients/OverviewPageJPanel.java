@@ -4,6 +4,7 @@
  */
 package Patients;
 
+import java.awt.CardLayout;
 import java.util.ArrayList;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -46,15 +47,15 @@ public class OverviewPageJPanel extends javax.swing.JPanel {
         for (Patient p : pL) {
 
             for (Encounter e : p.getEncounterHistory().getEncounterHistory()) {
-                if(e.getVitalSigns().getBloodPressure()< 130){
-                Object row[] = new Object[5];
-                row[0] = id;
-                row[1] = p.getPatientNo();
-                row[2] = e.getVitalSigns().getBloodPressure();
-                row[3] = p.getPerson().getHouse().getCommunity().getCommunityName();
-                row[4] = p.getPerson().getHouse().getCity().getcityName();
-                model.addRow(row);
-                id++;
+                if (e.getVitalSigns().getBloodPressure() < 130) {
+                    Object row[] = new Object[5];
+                    row[0] = id;
+                    row[1] = p.getPatientNo();
+                    row[2] = e.getVitalSigns().getBloodPressure();
+                    row[3] = p.getPerson().getHouse().getCommunity().getCommunityName();
+                    row[4] = p.getPerson().getHouse().getCity().getcityName();
+                    model.addRow(row);
+                    id++;
                 }
             }
         }
@@ -69,15 +70,15 @@ public class OverviewPageJPanel extends javax.swing.JPanel {
         for (Patient p : pL) {
 
             for (Encounter e : p.getEncounterHistory().getEncounterHistory()) {
-                if(e.getVitalSigns().getGlucoseLevel() < 140){
-                Object row[] = new Object[5];
-                row[0] = id;
-                row[1] = p.getPatientNo();
-                row[2] = e.getVitalSigns().getGlucoseLevel();
-                row[3] = p.getPerson().getHouse().getCommunity().getCommunityName();
-                row[4] = p.getPerson().getHouse().getCity().getcityName();
-                model.addRow(row);
-                id++;
+                if (e.getVitalSigns().getGlucoseLevel() < 140) {
+                    Object row[] = new Object[5];
+                    row[0] = id;
+                    row[1] = p.getPatientNo();
+                    row[2] = e.getVitalSigns().getGlucoseLevel();
+                    row[3] = p.getPerson().getHouse().getCommunity().getCommunityName();
+                    row[4] = p.getPerson().getHouse().getCity().getcityName();
+                    model.addRow(row);
+                    id++;
                 }
             }
         }
@@ -92,15 +93,15 @@ public class OverviewPageJPanel extends javax.swing.JPanel {
         for (Patient p : pL) {
 
             for (Encounter e : p.getEncounterHistory().getEncounterHistory()) {
-                if(e.getVitalSigns().getPulseRate()< 70){
-                Object row[] = new Object[5];
-                row[0] = id;
-                row[1] = p.getPatientNo();
-                row[2] = e.getVitalSigns().getPulseRate();
-                row[3] = p.getPerson().getHouse().getCommunity().getCommunityName();
-                row[4] = p.getPerson().getHouse().getCity().getcityName();
-                model.addRow(row);
-                id++;
+                if (e.getVitalSigns().getPulseRate() < 70) {
+                    Object row[] = new Object[5];
+                    row[0] = id;
+                    row[1] = p.getPatientNo();
+                    row[2] = e.getVitalSigns().getPulseRate();
+                    row[3] = p.getPerson().getHouse().getCommunity().getCommunityName();
+                    row[4] = p.getPerson().getHouse().getCity().getcityName();
+                    model.addRow(row);
+                    id++;
                 }
             }
         }
@@ -125,12 +126,18 @@ public class OverviewPageJPanel extends javax.swing.JPanel {
         jScrollPane4 = new javax.swing.JScrollPane();
         tblPulseRate = new javax.swing.JTable();
         jLabel4 = new javax.swing.JLabel();
+        btnBack = new javax.swing.JButton();
+
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setText("<<Patient With Blood Pressure Below 130 ");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 120, -1, -1));
 
         jLabel2.setText("<<Patient With Glucose Level Below 140 ");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(554, 551, -1, -1));
 
         jLabel3.setText("Patient With Pulse Rate Below 70 >> ");
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 345, -1, -1));
 
         tblGlucoseLevel.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -145,6 +152,8 @@ public class OverviewPageJPanel extends javax.swing.JPanel {
         ));
         jScrollPane2.setViewportView(tblGlucoseLevel);
 
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 484, 498, 160));
+
         tblBloodPressure.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
@@ -157,6 +166,8 @@ public class OverviewPageJPanel extends javax.swing.JPanel {
             }
         ));
         jScrollPane3.setViewportView(tblBloodPressure);
+
+        add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 91, 498, 160));
 
         tblPulseRate.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -171,69 +182,32 @@ public class OverviewPageJPanel extends javax.swing.JPanel {
         ));
         jScrollPane4.setViewportView(tblPulseRate);
 
-        jLabel4.setText("Patients With Abnormal Vital Signs");
+        add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(271, 287, 540, 160));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jScrollPane3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel1)
-                        .addGap(7, 7, 7))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jScrollPane2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel2))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addGap(0, 34, Short.MAX_VALUE)
-                                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 540, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(19, 19, 19))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel4)
-                .addGap(299, 299, 299))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(57, Short.MAX_VALUE)
-                        .addComponent(jLabel4)
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(120, 120, 120)
-                        .addComponent(jLabel1)))
-                .addGap(0, 36, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 37, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addGap(123, 123, 123)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(83, 83, 83))))
-        );
+        jLabel4.setText("Patients With Abnormal Vital Signs");
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(314, 57, -1, -1));
+
+        btnBack.setText("<< Back");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
+        add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        // TODO add your handling code here:
+        userProcessContainer.remove(this);
+//        Component[] componentArray = userProcessContainer.getComponents();
+//        Component component = componentArray[componentArray.length - 1];
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+    }//GEN-LAST:event_btnBackActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBack;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
