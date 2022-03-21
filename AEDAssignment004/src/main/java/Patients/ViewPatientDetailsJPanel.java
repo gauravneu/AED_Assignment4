@@ -120,7 +120,7 @@ public class ViewPatientDetailsJPanel extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(vitalTable);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 792, 312));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, 820, 312));
         add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, 100, 100));
 
         jLabel1.setText("Patient Name :");
