@@ -10,7 +10,10 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.text.DateFormat;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -394,7 +397,9 @@ public class CreatePatientJPanel extends javax.swing.JPanel {
             String cityName = patientProp.getProperty("cityName" + String.valueOf(i));
             int aptNo = 0;
             String chiefComplaint = patientProp.getProperty("chiefComplaint" + String.valueOf(i));
-
+            String dateFromConfig = patientProp.getProperty("date" + String.valueOf(i));
+            
+            
             double bodyTemperature = 0;
             double pulseRate = 0;
             double respirationRate = 0;
@@ -418,6 +423,22 @@ public class CreatePatientJPanel extends javax.swing.JPanel {
             } catch (NumberFormatException e) {
                 JOptionPane.showMessageDialog(this, "Please provide correct values "
                         + "for Age, Phone Number, Apt No, Body Temperature, Pulse Rate, Respiration Rate, Blood Pressure, Height, Glucose Level, Weight in config file for Patient :" + i);
+            }
+            
+            Date dateSet;
+            try {                
+                DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+                formatter.setLenient(false);
+                String dateInString = dateFromConfig;
+                dateSet = formatter.parse(dateInString);
+                String year = dateInString.split("/")[2];
+                if (year.length() != 4) {
+                    throw new Exception("Year should be 4 digit long");
+                }                
+                
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Provide correct value of Vital Sign Record Date in dd/MM/yyyy format");
+                return;
             }
 
             if (image1 == null) {
@@ -509,6 +530,7 @@ public class CreatePatientJPanel extends javax.swing.JPanel {
             }
 
             encounter = encounterHistory.addNewEncounter();
+            encounter.setCollectionDate(dateSet);
             encounter.setVitalSigns(vitalSigns);
             patient.setEncounterHistory(encounterHistory);
             patient.setPhoto(image);

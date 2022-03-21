@@ -5,6 +5,9 @@
 package Patients;
 
 import java.awt.CardLayout;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -65,6 +68,8 @@ public class AddVitalSignsJPanel extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         txtComplaint = new javax.swing.JTextField();
         btnBack = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        txtVitalSignDate = new javax.swing.JTextField();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -125,6 +130,16 @@ public class AddVitalSignsJPanel extends javax.swing.JPanel {
             }
         });
         add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+
+        jLabel3.setText("Date :");
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 450, -1, -1));
+
+        txtVitalSignDate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtVitalSignDateActionPerformed(evt);
+            }
+        });
+        add(txtVitalSignDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 450, 100, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -140,6 +155,23 @@ public class AddVitalSignsJPanel extends javax.swing.JPanel {
             double respirationRate = 0;
             double weight = 0;
 
+            
+            
+            Date date;
+            try {                
+                DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+                formatter.setLenient(false);
+                String dateInString = txtVitalSignDate.getText();
+                date = formatter.parse(dateInString);
+                String year = dateInString.split("/")[2];
+                if (year.length() != 4) {
+                    throw new Exception("Year should be 4 digit long");
+                }                
+                
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Provide correct value of Vital Sign Record Date in dd/MM/yyyy format");
+                return;
+            }
             try {
                 bloodPressure = Double.parseDouble(txtBloodPressure.getText());
                 bodyTemperature = Double.parseDouble(txtBodyTemperature.getText());
@@ -206,6 +238,7 @@ public class AddVitalSignsJPanel extends javax.swing.JPanel {
             vitalSigns.setPulseRate(pulseRate);
             vitalSigns.setRespirationRate(respirationRate);
             vitalSigns.setWeight(weight);
+            encounter.setCollectionDate(date);
             encounter.setVitalSigns(vitalSigns);
 
             JOptionPane.showMessageDialog(this, "Vital Signs Are Added.");
@@ -229,12 +262,17 @@ public class AddVitalSignsJPanel extends javax.swing.JPanel {
         layout.previous(userProcessContainer);
     }//GEN-LAST:event_btnBackActionPerformed
 
+    private void txtVitalSignDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtVitalSignDateActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtVitalSignDateActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel lblBloodPressure;
     private javax.swing.JLabel lblBodyTemperature;
     private javax.swing.JLabel lblGlucoseLevel;
@@ -250,6 +288,7 @@ public class AddVitalSignsJPanel extends javax.swing.JPanel {
     private javax.swing.JTextField txtPatientName;
     private javax.swing.JTextField txtPulseRate;
     private javax.swing.JTextField txtRespirationRate;
+    private javax.swing.JTextField txtVitalSignDate;
     private javax.swing.JTextField txtWeight;
     // End of variables declaration//GEN-END:variables
 }

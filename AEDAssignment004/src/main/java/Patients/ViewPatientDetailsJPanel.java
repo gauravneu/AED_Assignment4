@@ -48,11 +48,19 @@ public class ViewPatientDetailsJPanel extends javax.swing.JPanel {
 
     public void refreshTable() {
         encounterHistory = patient.getEncounterHistory();
+        
+        
+        
         DefaultTableModel model = (DefaultTableModel) vitalTable.getModel();
         model.setRowCount(0);
         int id = 1;
         for (Encounter e : encounterHistory.getEncounterHistory()) {
-            Object row[] = new Object[8];
+            
+            String collectionDate = e.getCollectionDate().toString().substring(4,10) 
+                        + "," + e.getCollectionDate().toString().substring(24); 
+            
+            
+            Object row[] = new Object[9];
             row[0] = id;
             row[1] = e;
             row[2] = e.getVitalSigns().getPulseRate();
@@ -61,6 +69,11 @@ public class ViewPatientDetailsJPanel extends javax.swing.JPanel {
             row[5] = e.getVitalSigns().getHeight();
             row[6] = e.getVitalSigns().getGlucoseLevel();
             row[7] = e.getVitalSigns().getWeight();
+            row[8] = collectionDate;
+            
+           
+            
+            
             model.addRow(row);
             id++;
         }
@@ -96,18 +109,18 @@ public class ViewPatientDetailsJPanel extends javax.swing.JPanel {
 
         vitalTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "S.No.", "Body Temperature", "Pulse Rate", "Respiration Rate", "Blood Pressure", "Height", "Glucose Level", "Weight"
+                "S.No.", "Body Temperature", "Pulse Rate", "Respiration Rate", "Blood Pressure", "Height", "Glucose Level", "Weight", "Record Date"
             }
         ));
         jScrollPane1.setViewportView(vitalTable);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(17, 172, 792, 312));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 792, 312));
         add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, 100, 100));
 
         jLabel1.setText("Patient Name :");
@@ -140,7 +153,7 @@ public class ViewPatientDetailsJPanel extends javax.swing.JPanel {
                 txtChiefComplaintActionPerformed(evt);
             }
         });
-        add(txtChiefComplaint, new org.netbeans.lib.awtextra.AbsoluteConstraints(361, 131, 406, -1));
+        add(txtChiefComplaint, new org.netbeans.lib.awtextra.AbsoluteConstraints(361, 131, 180, -1));
 
         btnDeleteVitals.setText("Delete Vitals");
         btnDeleteVitals.addActionListener(new java.awt.event.ActionListener() {

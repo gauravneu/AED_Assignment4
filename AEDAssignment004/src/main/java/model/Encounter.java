@@ -13,7 +13,7 @@ import java.util.Date;
 public class Encounter {
     
     private VitalSigns vitalSigns;
-    private Date date;
+    private Date collectionDate;
 
     public VitalSigns getVitalSigns() {
         return vitalSigns;
@@ -23,13 +23,15 @@ public class Encounter {
         this.vitalSigns = vitalSigns;
     }
 
-    public Date getDate() {
-        return date;
+    public Date getCollectionDate() {
+        return collectionDate;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setCollectionDate(Date collectionDate) {
+        this.collectionDate = collectionDate;
     }
+
+
     
     @Override
     public String toString(){
