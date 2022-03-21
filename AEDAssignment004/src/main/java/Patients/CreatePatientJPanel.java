@@ -265,7 +265,6 @@ public class CreatePatientJPanel extends javax.swing.JPanel {
 
             if (cityDir.emptyCityDir() || (!(cityDir.isExistingCity(cityName)))) {
 
-                //               System.out.println("Empty Directory or Non-Existing City");
                 patient = pd.addPatient();
                 person = new Person();
                 house = new House();
@@ -281,8 +280,7 @@ public class CreatePatientJPanel extends javax.swing.JPanel {
                 house.setCommunity(newCommunity);
                 house.setCity(newCity);
             } else if (!(cityDir.isExistingCommunityInGivenCity(communityName, cityName))) {
-                //              System.out.println("Existing City but new Community");
-
+ 
                 City c = cityDir.getCity(cityName);
                 Community c1 = c.addCommunity();
                 c1.setCommunityName(communityName);
@@ -295,17 +293,12 @@ public class CreatePatientJPanel extends javax.swing.JPanel {
                 house.setCity(c);
             } else if (cityDir.isExistingHouseInExistingCommunityInGivenCity(communityName, cityName, aptNo, street)) {
 
-                //               System.out.println("Existing house in given community and city");
                 City c = cityDir.getCity(cityName);
-                //           System.out.println(c.getcityName() + "Create Pateint all existing");
                 Community c1 = c.getCommunity(communityName);
-                //         System.out.println(c1.getCommunityName() + "Create Pateint all existing");
                 house = c1.getHouse(aptNo, street);
-                //       System.out.println("Inside second else if :" + house.getCityName());
             } else if ((cityDir.isExistingCommunityInGivenCity(communityName, cityName))
                     && (!(cityDir.isExistingHouseInExistingCommunityInGivenCity(communityName, cityName, aptNo, street)))) {
-                System.out.println("Existing Community in given City but new House");
-
+        
                 City c = cityDir.getCity(cityName);
                 Community c1 = c.getCommunity(communityName);
                 house = c1.addHouse();
@@ -365,38 +358,28 @@ public class CreatePatientJPanel extends javax.swing.JPanel {
     private void btnLoadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoadActionPerformed
         // TODO add your handling code here:
 
-        System.out.println("Start");
-
+    
         FileReader reader = null;
-        System.out.println("Reader Line done");
         try {
-            System.out.println("Try block of reader");
             reader = new FileReader("./config.properties");
-            System.out.println("file read");
         } catch (FileNotFoundException ex) {
             Logger.getLogger(CreatePatientJPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
-        System.out.println("After file");
         Properties patientProp = new Properties();
         try {
             patientProp.load(reader);
         } catch (IOException ex) {
             Logger.getLogger(CreatePatientJPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
-        System.out.println("Before image");
         BufferedImage image1 = null;
         try {
             image1 = ImageIO.read(new File("./Patient.jpeg"));
-            System.out.println("Image Set");
         } catch (IOException ex) {
             Logger.getLogger(CreatePatientJPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         int i;
         for (i = 1; i < 10; i++) {
-            System.out.println("For Loop");
-            //           for (Patient patient1 : pd.getPatientList()) {
-            System.out.println("Internal For Loop");
             patient = pd.addPatient();
             person = new Person();
             house = new House();
@@ -485,7 +468,7 @@ public class CreatePatientJPanel extends javax.swing.JPanel {
                 house = c1.getHouse(aptNo, street);
             } else if ((cityDir.isExistingCommunityInGivenCity(communityName, cityName))
                     && (!(cityDir.isExistingHouseInExistingCommunityInGivenCity(communityName, cityName, aptNo, street)))) {
-                System.out.println("Existing Community in given City but new House");
+
                 City c = cityDir.getCity(cityName);
                 Community c1 = c.getCommunity(communityName);
                 house = c1.addHouse();
@@ -496,8 +479,7 @@ public class CreatePatientJPanel extends javax.swing.JPanel {
                 house.setCity(c);
             }
 
-            System.out.println("Patient No :" + patient.getPatientNo());
-            System.out.println("Vital Signs Line Starts");
+
             vitalSigns = new VitalSigns();
 
             if (bodyTemperature != 0) {

@@ -49,8 +49,7 @@ public class PatientDirectory {
         
         for (Patient p : patientList) {
 
-  //              System.out.println(p.getPatientNo());
-    //            System.out.println(patientId);
+
                 
                 
             if (p.getPatientNo() == patientId) {
