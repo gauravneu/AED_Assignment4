@@ -5,6 +5,7 @@
 package ui;
 
 import Patients.CreatePatientJPanel;
+import Patients.FinalOverViewJPanel;
 import Patients.OverviewPageJPanel;
 import Patients.SearchPatientJPanel;
 import Patients.ViewPatientJPanel;
@@ -72,10 +73,11 @@ public class MainJFrame extends javax.swing.JFrame {
 
         jSplitPane1 = new javax.swing.JSplitPane();
         controlPanel = new javax.swing.JPanel();
+        btnAdd = new javax.swing.JButton();
+        btnViewById = new javax.swing.JButton();
+        btnSearchPatients = new javax.swing.JButton();
+        btnOverView = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
         userProcessContainer = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         lblPhoto = new javax.swing.JLabel();
@@ -83,31 +85,38 @@ public class MainJFrame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton1.setText("Add New Patient");
+        btnAdd.setText("Add New Patient");
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddActionPerformed(evt);
+            }
+        });
+
+        btnViewById.setText("View Patient By Id");
+        btnViewById.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnViewByIdActionPerformed(evt);
+            }
+        });
+
+        btnSearchPatients.setText("Search Patients");
+        btnSearchPatients.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchPatientsActionPerformed(evt);
+            }
+        });
+
+        btnOverView.setText("Overview Page");
+        btnOverView.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOverViewActionPerformed(evt);
+            }
+        });
+
+        jButton1.setText("Final OverView");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
-            }
-        });
-
-        jButton2.setText("View Patient By Id");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-
-        jButton3.setText("Search Patients");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
-
-        jButton4.setText("Overview Page");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
             }
         });
 
@@ -118,27 +127,31 @@ public class MainJFrame extends javax.swing.JFrame {
             .addGroup(controlPanelLayout.createSequentialGroup()
                 .addContainerGap(11, Short.MAX_VALUE)
                 .addGroup(controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jButton2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(btnViewById, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(btnAdd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, controlPanelLayout.createSequentialGroup()
                         .addGap(3, 3, 3)
-                        .addGroup(controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)
-                            .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(btnSearchPatients, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)
+                                .addComponent(btnOverView, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                 .addGap(0, 57, Short.MAX_VALUE))
         );
         controlPanelLayout.setVerticalGroup(
             controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(controlPanelLayout.createSequentialGroup()
                 .addGap(185, 185, 185)
-                .addComponent(jButton1)
+                .addComponent(btnAdd)
                 .addGap(45, 45, 45)
-                .addComponent(jButton2)
+                .addComponent(btnViewById)
                 .addGap(44, 44, 44)
-                .addComponent(jButton3)
+                .addComponent(btnSearchPatients)
                 .addGap(35, 35, 35)
-                .addComponent(jButton4)
-                .addContainerGap(221, Short.MAX_VALUE))
+                .addComponent(btnOverView)
+                .addGap(35, 35, 35)
+                .addComponent(jButton1)
+                .addContainerGap(157, Short.MAX_VALUE))
         );
 
         jSplitPane1.setLeftComponent(controlPanel);
@@ -169,26 +182,39 @@ public class MainJFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         // TODO add your handling code here:
 
         CreatePatientJPanel cpjp = new CreatePatientJPanel(userProcessContainer, patientList, cityList);
         userProcessContainer.add("CreatePatientJPanel", cpjp);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnAddActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnViewByIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewByIdActionPerformed
         // TODO add your handling code here:
-
+        
+        if(patientList.getPatientList().isEmpty()){
+                    JOptionPane.showMessageDialog(this, "No data to Show. Please Add Some Patients!", "Information", JOptionPane.WARNING_MESSAGE);
+            return;
+        
+        }
+        
+        
         ViewPatientJPanel vpjp = new ViewPatientJPanel(userProcessContainer, patientList, cityList);
         userProcessContainer.add("ViewPatientJPanel", vpjp);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btnViewByIdActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void btnSearchPatientsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchPatientsActionPerformed
         // TODO add your handling code here:
+        
+        if(patientList.getPatientList().isEmpty()){
+                    JOptionPane.showMessageDialog(this, "No data to Show. Please Add Some Patients!!", "Information", JOptionPane.WARNING_MESSAGE);
+            return;
+        
+        }
         
         SearchPatientJPanel spjp = new SearchPatientJPanel(userProcessContainer, patientList);
         userProcessContainer.add("SearchPatientJPanel", spjp);
@@ -197,17 +223,38 @@ public class MainJFrame extends javax.swing.JFrame {
         
 
 
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_btnSearchPatientsActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void btnOverViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOverViewActionPerformed
         // TODO add your handling code here:
+        
+        if(patientList.getPatientList().isEmpty()){
+                    JOptionPane.showMessageDialog(this, "No data to Show. Please Add Some Patients!" , "Information", JOptionPane.WARNING_MESSAGE);
+            return;
+        
+        }
         
         OverviewPageJPanel opjp = new OverviewPageJPanel(userProcessContainer, patientList);
         userProcessContainer.add("OverviewPageJPanel", opjp);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer); 
         
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_btnOverViewActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        
+        if(patientList.getPatientList().isEmpty()){
+                    JOptionPane.showMessageDialog(this, "No data to Show. Please Add Some Patients!" , "Information", JOptionPane.WARNING_MESSAGE);
+            return;
+        
+        }
+        
+        FinalOverViewJPanel fovjp = new FinalOverViewJPanel(userProcessContainer, patientList);
+        userProcessContainer.add("FinalOverViewJPanel", fovjp);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer); 
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -245,11 +292,12 @@ public class MainJFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAdd;
+    private javax.swing.JButton btnOverView;
+    private javax.swing.JButton btnSearchPatients;
+    private javax.swing.JButton btnViewById;
     private javax.swing.JPanel controlPanel;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSplitPane jSplitPane1;

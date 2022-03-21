@@ -127,7 +127,7 @@ public class UpdatePatientDetailsJPanel extends javax.swing.JPanel {
             }
         });
         add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, -1, -1));
-        add(lblPatientName, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 40, 140, 30));
+        add(lblPatientName, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 40, 140, 30));
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtBodyTemperatureActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBodyTemperatureActionPerformed
@@ -166,6 +166,10 @@ public class UpdatePatientDetailsJPanel extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(this, "Insert Proper values for Body Temperature");
                 return;
             }
+            if (bodyTemperature < 97 || bodyTemperature > 100) {
+                JOptionPane.showMessageDialog(this, "Body Temperature should not be less than 97 and not more than 100 F1.");
+                return;
+            }
         }
 
         if (!txtPulseRate.getText().isEmpty()) {
@@ -175,6 +179,11 @@ public class UpdatePatientDetailsJPanel extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(this, "Insert Proper values for Pulse Rate");
                 return;
             }
+            if (pulseRate < 50 || pulseRate > 110) {
+                JOptionPane.showMessageDialog(this, "Pulse Rate should not be less than 50 and not more than 110.");
+                return;
+            }
+            
         }
 
         if (!txtGlucoseLevel.getText().isEmpty()) {
@@ -182,6 +191,10 @@ public class UpdatePatientDetailsJPanel extends javax.swing.JPanel {
                 glucoseLevel = Double.parseDouble(txtGlucoseLevel.getText());
             } catch (NumberFormatException e) {
                 JOptionPane.showMessageDialog(this, "Insert Proper values for Glucose Level");
+                return;
+            }
+            if (glucoseLevel < 120 || glucoseLevel > 220) {
+                JOptionPane.showMessageDialog(this, "Glucose Level should not be less than 120 and not more than 220.");
                 return;
             }
         }
@@ -193,6 +206,10 @@ public class UpdatePatientDetailsJPanel extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(this, "Insert Proper values for Blood Pressure");
                 return;
             }
+            if (bloodPressure < 110 || bloodPressure > 150) {
+                JOptionPane.showMessageDialog(this, "Blood Pressure should not be less than 110 and not more than 150.");
+                return;
+            }
         }
 
         if (!txtHeight.getText().isEmpty()) {
@@ -200,6 +217,10 @@ public class UpdatePatientDetailsJPanel extends javax.swing.JPanel {
                 height = Double.parseDouble(txtHeight.getText());
             } catch (NumberFormatException e) {
                 JOptionPane.showMessageDialog(this, "Insert Proper values for Height");
+                return;
+            }
+            if (height < 1 || height > 8) {
+                JOptionPane.showMessageDialog(this, "Height should not be less than 1 and not more than 8 ft.");
                 return;
             }
         }
@@ -211,6 +232,10 @@ public class UpdatePatientDetailsJPanel extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(this, "Insert Proper values for Respiration Rate");
                 return;
             }
+            if (respirationRate < 10 || respirationRate > 20) {
+                JOptionPane.showMessageDialog(this, "Respiration Rate should not be less than 10 and not more than 20.");
+                return;
+            }
         }
 
         if (!txtWeight.getText().isEmpty()) {
@@ -218,6 +243,10 @@ public class UpdatePatientDetailsJPanel extends javax.swing.JPanel {
                 weight = Double.parseDouble(txtWeight.getText());
             } catch (NumberFormatException e) {
                 JOptionPane.showMessageDialog(this, "Insert Proper values for Weight");
+                return;
+            }
+            if (weight < 1 || weight > 300) {
+                JOptionPane.showMessageDialog(this, "Weight should not be less than 1 and not more than 300 lbs.");
                 return;
             }
         }
@@ -262,14 +291,13 @@ public class UpdatePatientDetailsJPanel extends javax.swing.JPanel {
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
- //       userProcessContainer.remove(this);
- //       Component[] componentArray = userProcessContainer.getComponents();
-   //     Component component = componentArray[componentArray.length - 1];
-    //    CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-      //  layout.previous(userProcessContainer);
-      
-      
-      userProcessContainer.remove(this);
+        //       userProcessContainer.remove(this);
+        //       Component[] componentArray = userProcessContainer.getComponents();
+        //     Component component = componentArray[componentArray.length - 1];
+        //    CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        //  layout.previous(userProcessContainer);
+
+        userProcessContainer.remove(this);
         Component[] componentArray = userProcessContainer.getComponents();
         Component component = componentArray[componentArray.length - 1];
         ViewPatientDetailsJPanel viewPatientDetailsJPanel = (ViewPatientDetailsJPanel) component;

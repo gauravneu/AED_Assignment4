@@ -33,7 +33,7 @@ public class Encounter {
     
     @Override
     public String toString(){
-        return String.valueOf(vitalSigns.getBloodPressure());
+        return String.valueOf(vitalSigns.getBodyTemperature());
     }
     
     

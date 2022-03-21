@@ -190,6 +190,11 @@ public class AddVitalSignsJPanel extends javax.swing.JPanel {
                 return;
             }
 
+            if (txtComplaint.getText().trim().length() == 0) {
+                JOptionPane.showMessageDialog(this, "Provide details of Chief Complaint.");
+                return;
+            }
+
             patient.setChiefComplaint(txtComplaint.getText());
             vitalSigns = new VitalSigns();
             encounterHistory = patient.getEncounterHistory();
