@@ -41,7 +41,7 @@ public class ViewPatientDetailsJPanel extends javax.swing.JPanel {
 
         txtAge.setText(String.valueOf(patient.getPerson().getAge()));
         txtChiefComplaint.setText(String.valueOf(patient.getChiefComplaint()));
-        txtGender.setText(String.valueOf(patient.getPerson().getGender()));
+        txtGender.setText(String.valueOf(patient.getPerson().getGender()).toUpperCase());
         txtPatientName.setText(String.valueOf(patient.getPerson().getName()));
         txtPhone.setText(String.valueOf(patient.getPerson().getPhoneNumber()));
     }
